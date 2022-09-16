@@ -77,14 +77,16 @@ const Login: NextPage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    loginMutaion({
-      variables: {
-        email,
-        password,
-      },
-    });
+    !loading &&
+      loginMutaion({
+        variables: {
+          email,
+          password,
+        },
+      });
   };
 
+  console.log(loading, 'loading');
   return (
     <Layout title="로그인" hasTabBar>
       <Head>
@@ -138,9 +140,10 @@ const Login: NextPage = () => {
               <div>
                 <button
                   type="submit"
-                  className="flex w-full justify-center rounded-sm border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="flex w-full justify-center rounded-sm border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-200"
+                  disabled={loading}
                 >
-                  로그인
+                  {loading ? '로딩중' : '로그인'}
                 </button>
               </div>
               <div className="flex justify-center">
