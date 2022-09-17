@@ -1,10 +1,10 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useReactiveVar } from '@apollo/client';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import { handleLogin, isServerError } from '../apollo-store';
+import { handleLogin, isLoginVar, isServerError } from '../apollo-store';
 import Layout from '../components/layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -40,6 +40,7 @@ interface FormInput {
 
 const Register: NextPage = () => {
   const router = useRouter();
+  const isLogin = useReactiveVar(isLoginVar);
   const {
     register,
     handleSubmit,
@@ -75,6 +76,12 @@ const Register: NextPage = () => {
       router.push('/verify-email');
     }
   }, [data, router]);
+
+  useEffect(() => {
+    if (isLogin) {
+      router.push('/');
+    }
+  }, [isLogin, router]);
 
   return (
     <Layout title="회원가입" hasTabBar>
