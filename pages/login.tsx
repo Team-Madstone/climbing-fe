@@ -1,10 +1,10 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useReactiveVar } from '@apollo/client';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import { handleLogin, isServerError } from '../apollo-store';
+import { handleLogin, isLoginVar, isServerError } from '../apollo-store';
 import Layout from '../components/layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -26,6 +26,7 @@ interface FormInput {
 
 const Login: NextPage = () => {
   const router = useRouter();
+  const isLogin = useReactiveVar(isLoginVar);
   const { register, handleSubmit, getValues, watch } = useForm<FormInput>();
   const [loginMutaion, { loading, data, error, reset }] = useMutation(
     LOGIN_MUTATION,
@@ -47,6 +48,12 @@ const Login: NextPage = () => {
   useEffect(() => {
     reset();
   }, [email, password, reset]);
+
+  useEffect(() => {
+    if (isLogin) {
+      router.push('/');
+    }
+  }, [isLogin, router]);
 
   const handleFormSubmit: SubmitHandler<FormInput> = () => {
     const { email, password } = getValues();
