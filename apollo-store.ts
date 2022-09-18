@@ -1,21 +1,25 @@
 import { makeVar, ServerError, ServerParseError } from '@apollo/client';
+import { IUser } from './types/type';
 
 export const LOGIN_TOKEN = 'login_token';
 
-export const isClientSide = typeof window !== 'undefined';
+export const isClientSideVar = makeVar(typeof window !== 'undefined');
 
-export const isLoginVar = makeVar(
-  isClientSide && Boolean(localStorage.getItem(LOGIN_TOKEN))
+export const loginUserVar = makeVar<IUser | undefined>(undefined);
+
+export const hasLoginTokenVar = makeVar(
+  isClientSideVar() && Boolean(localStorage.getItem(LOGIN_TOKEN))
 );
 
 export const handleLogin = (token: string) => {
-  isClientSide && localStorage.setItem(LOGIN_TOKEN, token);
-  isLoginVar(true);
+  isClientSideVar() && localStorage.setItem(LOGIN_TOKEN, token);
+  hasLoginTokenVar(true);
 };
 
 export const handleLogout = () => {
-  isClientSide && localStorage.removeItem(LOGIN_TOKEN);
-  isLoginVar(false);
+  isClientSideVar() && localStorage.removeItem(LOGIN_TOKEN);
+  hasLoginTokenVar(false);
+  loginUserVar(undefined);
 };
 
 export const isServerError = (
