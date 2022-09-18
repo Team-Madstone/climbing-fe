@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const VerifyEmail: NextPage = () => {
   return (
-    <div className="my-28 mx-6">
+    <div className="my-28 mx-auto max-w-[640px]">
       <p className="text-2xl text-bold">회원가입 완료</p>
       <p className="mt-4">
         회원가입이 완료되었습니다.
