@@ -1,3 +1,4 @@
+import { useReactiveVar } from '@apollo/client';
 import {
   HomeIcon,
   MagnifyingGlassIcon,
@@ -6,6 +7,7 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useState } from 'react';
+import { handleLogout, hasLoginTokenVar } from '../apollo-store';
 
 interface LayoutProps {
   title?: string;
@@ -20,7 +22,13 @@ export default function Layout({
   children,
 }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const isLoggedIn = useReactiveVar(hasLoginTokenVar);
+
+  const onLogoutClick = () => {
+    handleLogout();
+    setIsMenuOpen(false);
+  };
 
   return (
     <div>
@@ -67,7 +75,10 @@ export default function Layout({
                           </li>
                         </Link>
                         <Link href="/">
-                          <li className="text-sm px-5 py-2 hover:bg-gray-50 cursor-pointer">
+                          <li
+                            onClick={onLogoutClick}
+                            className="text-sm px-5 py-2 hover:bg-gray-50 cursor-pointer"
+                          >
                             로그아웃
                           </li>
                         </Link>
