@@ -6,9 +6,11 @@ interface HeartBtnProps {
 
 export default function HeartBtn({ likes }: HeartBtnProps) {
   return (
-    <button type="button" className="flex items-center text-gray-500">
-      <HeartIcon className="w-6 h-6 mr-1" />
-      {likes}
-    </button>
+    <div className="flex">
+      <button type="button" className="flex items-center text-gray-500">
+        <HeartIcon className="w-6 h-6 mr-1" />
+      </button>
+      <span className="cursor-default">{likes}</span>
+    </div>
   );
 }
