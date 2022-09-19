@@ -1,7 +1,5 @@
-import { useReactiveVar } from '@apollo/client';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { loginUserVar } from '../../apollo-store';
 import Layout from '../../components/layout';
 import MeetupBox from '../../components/meetupBox';
 import SearchBar from '../../components/searchBar';
@@ -56,8 +54,6 @@ const positions = [
 ];
 
 const Meetup: NextPage = () => {
-  const user = useReactiveVar(loginUserVar);
-
   return (
     <Layout title="동행 모집" searchUrl="/meetup/search" hasTabBar>
       <Head>
@@ -69,7 +65,7 @@ const Meetup: NextPage = () => {
         </div>
         <div className="mx-auto">
           <div className="overflow-hidden bg-white relative">
-            <WriteIcon user={user} href="/meetup/write" />
+            <WriteIcon href="/meetup/write" />
             <ul role="list" className="mt-4">
               {positions.map((position) => (
                 <MeetupBox position={position} key={position.id} />
