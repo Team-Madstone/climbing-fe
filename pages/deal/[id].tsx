@@ -12,6 +12,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import ModalNav from '../../components/modalNav';
 import ModalBox from '../../components/modalBox';
+import AuthGuard from '../../components/authGuard';
 
 const DealDetail: NextPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -97,120 +98,122 @@ const DealDetail: NextPage = () => {
           </div>
         </div>
         {isModalOpen && (
-          <div>
-            <div className="flex justify-center">
-              <ModalBox>
-                <ModalNav onClick={onModalClick} text="중고 거래 신고하기" />
-                <div className="p-6">
-                  <div className="flex flex-col items-center mb-2 text-gray-600">
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason1"
-                        type="radio"
-                        name="report"
-                        value="reason1"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason1"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        판매 금지 물품입니다.
-                      </label>
+          <AuthGuard>
+            <div>
+              <div className="flex justify-center">
+                <ModalBox>
+                  <ModalNav onClick={onModalClick} text="중고 거래 신고하기" />
+                  <div className="p-6">
+                    <div className="flex flex-col items-center mb-2 text-gray-600">
+                      <div className="my-2 w-full">
+                        <input
+                          id="reason1"
+                          type="radio"
+                          name="report"
+                          value="reason1"
+                          className="mr-3"
+                        />
+                        <label
+                          htmlFor="reason1"
+                          className="w-full py-2 text-sm sm:text-base"
+                        >
+                          판매 금지 물품입니다.
+                        </label>
+                      </div>
+                      <div className="my-2 w-full">
+                        <input
+                          id="reason2"
+                          type="radio"
+                          name="report"
+                          value="reason2"
+                          className="mr-3"
+                        />
+                        <label
+                          htmlFor="reason2"
+                          className="w-full py-2 text-sm sm:text-base"
+                        >
+                          전문 판매업자의 글입니다.
+                        </label>
+                      </div>
+                      <div className="my-2 w-full">
+                        <input
+                          id="reason3"
+                          type="radio"
+                          name="report"
+                          value="reason3"
+                          className="mr-3"
+                        />
+                        <label
+                          htmlFor="reason3"
+                          className="w-full py-2 text-sm sm:text-base"
+                        >
+                          중복, 도배성 글입니다.
+                        </label>
+                      </div>
+                      <div className="my-2 w-full">
+                        <input
+                          id="reason4"
+                          type="radio"
+                          name="report"
+                          value="reason4"
+                          className="mr-3"
+                        />
+                        <label
+                          htmlFor="reason4"
+                          className="w-full py-2 text-sm sm:text-base"
+                        >
+                          비방하는 글입니다.
+                        </label>
+                      </div>
+                      <div className="my-2 w-full">
+                        <input
+                          id="reason5"
+                          type="radio"
+                          name="report"
+                          value="reason5"
+                          className="mr-3"
+                        />
+                        <label
+                          htmlFor="reason5"
+                          className="w-full py-2 text-sm sm:text-base"
+                        >
+                          광고, 홍보 글입니다.
+                        </label>
+                      </div>
+                      <div className="my-2 w-full">
+                        <input
+                          id="reason6"
+                          type="radio"
+                          name="report"
+                          value="reason6"
+                          className="mr-3"
+                        />
+                        <label
+                          htmlFor="reason6"
+                          className="w-full py-2 text-sm sm:text-base"
+                        >
+                          기타
+                          <div className="ml-6">
+                            <textarea
+                              rows={4}
+                              className="block mt-3 w-full border-gray-400"
+                            />
+                          </div>
+                        </label>
+                      </div>
                     </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason2"
-                        type="radio"
-                        name="report"
-                        value="reason2"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason2"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        전문 판매업자의 글입니다.
-                      </label>
-                    </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason3"
-                        type="radio"
-                        name="report"
-                        value="reason3"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason3"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        중복, 도배성 글입니다.
-                      </label>
-                    </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason4"
-                        type="radio"
-                        name="report"
-                        value="reason4"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason4"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        비방하는 글입니다.
-                      </label>
-                    </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason5"
-                        type="radio"
-                        name="report"
-                        value="reason5"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason5"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        광고, 홍보 글입니다.
-                      </label>
-                    </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason6"
-                        type="radio"
-                        name="report"
-                        value="reason6"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason6"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        기타
-                        <div className="ml-6">
-                          <textarea
-                            rows={4}
-                            className="block mt-3 w-full border-gray-400"
-                          />
-                        </div>
-                      </label>
+                    <div className="flex justify-end">
+                      <Button text="신고하기" />
                     </div>
                   </div>
-                  <div className="flex justify-end">
-                    <Button text="신고하기" />
-                  </div>
-                </div>
-              </ModalBox>
-              <div
-                onClick={() => setIsModalOpen(false)}
-                className="fixed bg-gray-300 opacity-50 top-0 left-0 w-full h-full"
-              ></div>
+                </ModalBox>
+                <div
+                  onClick={() => setIsModalOpen(false)}
+                  className="fixed bg-gray-300 opacity-50 top-0 left-0 w-full h-full"
+                ></div>
+              </div>
             </div>
-          </div>
+          </AuthGuard>
         )}
       </div>
     </Layout>
