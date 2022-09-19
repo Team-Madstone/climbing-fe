@@ -14,7 +14,6 @@ export default function AuthGuard({ children }: IProps) {
 
   useEffect(() => {
     if (!isClientSide) return;
-
     if (hasLoginToken) {
       if (isFetched) {
         if (user) {
@@ -35,7 +34,6 @@ export default function AuthGuard({ children }: IProps) {
     }
     router.push('/login');
   }, [isClientSide, user, isFetched, router, hasLoginToken]);
-  console.log(isClientSide, hasLoginToken, isFetched, user);
 
   return !init ? <Loading /> : <>{children}</>;
 }
