@@ -29,3 +29,10 @@ export interface IRegisterResult {
     token?: string;
   };
 }
+
+export interface IForgotPasswordResult {
+  forgotPasswordResult: {
+    status: boolean;
+    message: string;
+  };
+}
