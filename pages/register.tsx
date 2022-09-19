@@ -6,11 +6,9 @@ import React, { useEffect } from 'react';
 import { handleLogin, isServerError } from '../apollo-store';
 import Layout from '../components/layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import useGuestGuard from '../hooks/useMyProfile';
 import GuestGuard from '../components/guestGuard';
 import { IRegisterResult } from '../types/type';
-
-const returnUrl = 'http://localhost:3000/';
+import { returnUrl } from '../shared/constances';
 
 const REGISTER_MUTATION = gql`
   mutation register(
@@ -41,7 +39,6 @@ interface FormInput {
 }
 
 const Register: NextPage = () => {
-  useGuestGuard();
   const {
     register,
     handleSubmit,
@@ -64,7 +61,7 @@ const Register: NextPage = () => {
           email,
           password,
           name,
-          returnUrl,
+          returnUrl: returnUrl,
         },
       });
   };
