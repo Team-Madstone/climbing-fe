@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import AuthGuard from '../../components/authGuard';
 import ChatList from '../../components/chatList';
 import Layout from '../../components/layout';
 
@@ -41,21 +42,23 @@ const people = [
 const Chats: NextPage = () => {
   return (
     <Layout title="채팅" hasTabBar>
-      <Head>
-        <title>채팅</title>
-      </Head>
-      <div>
-        <h3 className="text-2xl font-medium">채팅 목록</h3>
+      <AuthGuard>
+        <Head>
+          <title>채팅</title>
+        </Head>
         <div>
-          <div className="mt-6 flow-root">
-            <ul role="list" className="-my-5 divide-y divide-gray-200">
-              {people.map((person) => (
-                <ChatList person={person} key={person.id} />
-              ))}
-            </ul>
+          <h3 className="text-2xl font-medium">채팅 목록</h3>
+          <div>
+            <div className="mt-6 flow-root">
+              <ul role="list" className="-my-5 divide-y divide-gray-200">
+                {people.map((person) => (
+                  <ChatList person={person} key={person.id} />
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </AuthGuard>
     </Layout>
   );
 };
