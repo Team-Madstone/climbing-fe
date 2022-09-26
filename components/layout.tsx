@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useState } from 'react';
-import { handleLogout, hasLoginTokenVar } from '../apollo-store';
+import { handleLogout, loginUserVar } from '../apollo-store';
 
 interface LayoutProps {
   title?: string;
@@ -23,7 +23,7 @@ export default function Layout({
 }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const isLoggedIn = useReactiveVar(hasLoginTokenVar);
+  const loginUser = useReactiveVar(loginUserVar);
 
   const onLogoutClick = () => {
     handleLogout();
@@ -60,7 +60,7 @@ export default function Layout({
                   onClick={() => setIsMenuOpen(true)}
                   className="w-8 h-8 bg-gray-200 rounded-full ml-5 cursor-pointer"
                 ></span>
-                {isMenuOpen && isLoggedIn && (
+                {isMenuOpen && loginUser && (
                   <div>
                     <div className="relative">
                       <ul className="absolute border rounded-sm w-32 top-8 right-0 bg-white z-20 shadow">
@@ -90,7 +90,7 @@ export default function Layout({
                     ></div>
                   </div>
                 )}
-                {isMenuOpen && !isLoggedIn && (
+                {isMenuOpen && !loginUser && (
                   <div>
                     <div className="relative">
                       <ul className="absolute border rounded-sm w-32 top-8 right-0 bg-white z-20 shadow">
