@@ -16,6 +16,9 @@ import Link from 'next/link';
 import MeetupBox from '../../components/meetupBox';
 import ModalNav from '../../components/modalNav';
 import ModalBox from '../../components/modalBox';
+import { useRouter } from 'next/router';
+import useMyProfile from '../../hooks/useMyProfile';
+import { classNames } from '../../shared/share';
 
 const tabs = [
   { id: 1, name: '북마크 한 암장 정보' },
@@ -95,13 +98,12 @@ const products = [
   },
 ];
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
-
 const Profile: NextPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState<number>(1);
+
+  const router = useRouter();
+  const { isClientSide, hasLoginToken, user } = useMyProfile();
 
   const onTabChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTab(parseInt(e.target.value));
@@ -109,6 +111,24 @@ const Profile: NextPage = () => {
 
   const onModalClick = () => {
     setIsModalOpen(false);
+  };
+
+  const checkEmailVerified = () => {
+    if (hasLoginToken) {
+      if (user) {
+        if (!user.email_verified_at) {
+          router.push('/check-verify-email');
+          return;
+        } else {
+          // 북마크 기능
+          setIsModalOpen(true);
+          return;
+        }
+      }
+    } else {
+      router.push('/login');
+      return;
+    }
   };
 
   return (
@@ -121,7 +141,7 @@ const Profile: NextPage = () => {
           <span className="block w-24 h-24 bg-gray-200 rounded-full mx-auto"></span>
           <p className="mx-auto mt-4 text-xl">jelly</p>
           <div className="flex justify-center pt-4">
-            <Button onClick={() => setIsModalOpen(true)} text="프로필 수정" />
+            <Button onClick={checkEmailVerified} text="프로필 수정" />
           </div>
         </div>
         <div className="mt-6">
