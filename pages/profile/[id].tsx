@@ -14,6 +14,7 @@ import MeetupBox from '../../components/meetupBox';
 import Link from 'next/link';
 import ModalBox from '../../components/modalBox';
 import ModalNav from '../../components/modalNav';
+import { classNames } from '../../shared/share';
 
 const tabs = [
   { id: 1, name: '동행 모집' },
@@ -67,10 +68,6 @@ const products = [
     imageSrc: productPic3,
   },
 ];
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
 
 const ProfileDetail: NextPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
