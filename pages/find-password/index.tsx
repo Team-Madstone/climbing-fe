@@ -1,13 +1,13 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import GuestGuard from '../components/guestGuard';
-import Layout from '../components/layout';
+import Layout from '../../components/layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { gql, useMutation } from '@apollo/client';
 import Link from 'next/link';
-import { isServerError } from '../apollo-store';
-import { IForgotPasswordResult } from '../types/type';
-import { returnUrl } from '../shared/constances';
+import { isServerError } from '../../apollo-store';
+import { IForgotPasswordResult } from '../../types/type';
+import { returnUrl } from '../../shared/constances';
+import GuestGuard from '../../components/guestGuard';
 
 const FORGOT_PASSWORD_MUTATION = gql`
   mutation forgotPassword($email: String!, $returnUrl: String!) {
