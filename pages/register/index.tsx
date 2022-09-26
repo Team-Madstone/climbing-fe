@@ -3,12 +3,12 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
-import { handleLogin, isServerError } from '../apollo-store';
-import Layout from '../components/layout';
+import Layout from '../../components/layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import GuestGuard from '../components/guestGuard';
-import { IRegisterResult } from '../types/type';
-import { returnUrl } from '../shared/constances';
+import GuestGuard from '../../components/guestGuard';
+import { IRegisterResult } from '../../types/type';
+import { returnUrl } from '../../shared/constances';
+import { handleLogin, isServerError } from '../../apollo-store';
 
 const REGISTER_MUTATION = gql`
   mutation register(
