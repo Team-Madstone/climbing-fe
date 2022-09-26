@@ -3,11 +3,11 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
-import { handleLogin, isServerError } from '../apollo-store';
-import Layout from '../components/layout';
+import { handleLogin, isServerError } from '../../apollo-store';
+import Layout from '../../components/layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import GuestGuard from '../components/guestGuard';
-import { ILoginResult } from '../types/type';
+import GuestGuard from '../../components/guestGuard';
+import { ILoginResult } from '../../types/type';
 
 const LOGIN_MUTATION = gql`
   mutation login($email: String!, $password: String!) {
@@ -158,7 +158,7 @@ const Login: NextPage = () => {
                   </Link>
                 </div>
                 <div className="flex justify-center">
-                  <Link href="/find-password">
+                  <Link href="/findPassword">
                     <button className="text-sm text-gray-500 hover:text-gray-700">
                       비밀번호 찾기
                     </button>
