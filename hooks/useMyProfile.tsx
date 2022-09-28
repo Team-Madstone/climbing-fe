@@ -28,7 +28,6 @@ const useMyProfile = () => {
         },
       }),
       onCompleted: (data) => {
-        console.log(data);
         loginUserVar(data?.getMyProfileResult?.data?.user);
         setIsFetched(true);
       },
