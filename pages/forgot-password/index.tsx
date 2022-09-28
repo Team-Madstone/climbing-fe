@@ -2,22 +2,13 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Layout from '../../components/layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import Link from 'next/link';
 import { isServerError } from '../../apollo-store';
 import { IForgotPasswordResult } from '../../types/type';
-import { returnUrl } from '../../shared/constances';
+import { resetPwReturnUrl } from '../../shared/constances';
 import GuestGuard from '../../components/guestGuard';
-
-const FORGOT_PASSWORD_MUTATION = gql`
-  mutation forgotPassword($email: String!, $returnUrl: String!) {
-    forgotPasswordResult(input: { email: $email, returnUrl: $returnUrl })
-      @rest(method: "POST", path: "forgot-password") {
-      status
-      message
-    }
-  }
-`;
+import { FORGOT_PASSWORD_MUTATION } from '../../apollo-request';
 
 interface FormInput {
   email: String;
@@ -37,6 +28,9 @@ const FindPassword: NextPage = () => {
   const [forgotPasswordMutation, { loading, error: serverError }] =
     useMutation<IForgotPasswordResult>(FORGOT_PASSWORD_MUTATION, {
       onError: (error) => undefined,
+      onCompleted() {
+        alert('메일 발송이 완료되었습니다.');
+      },
     });
 
   const handleFormSubmit: SubmitHandler<FormInput> = () => {
@@ -45,7 +39,7 @@ const FindPassword: NextPage = () => {
       forgotPasswordMutation({
         variables: {
           email,
-          returnUrl: returnUrl,
+          returnUrl: resetPwReturnUrl,
         },
       });
   };

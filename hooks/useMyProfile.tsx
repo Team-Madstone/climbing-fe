@@ -45,6 +45,7 @@ const useMyProfile = () => {
           setIsFetched(true);
         },
       });
+        setIsFetched(true);
   }, [isClientSide, hasLoginToken, getMyProfile]);
 
   return {
