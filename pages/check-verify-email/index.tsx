@@ -23,7 +23,7 @@ const CheckVerifyEmail: NextPage = () => {
   const isClientSide = useReactiveVar(isClientSideVar);
   const hasLoginToken = useReactiveVar(hasLoginTokenVar);
   const getLoginToken = () => localStorage.getItem(LOGIN_TOKEN);
-  const [emailVerificationMutation, { loading, data, error }] = useMutation(
+  const [emailVerificationMutation, { loading }] = useMutation(
     EMAIL_VERIFICATION_MUTATION,
     {
       onError: (error) => undefined,
