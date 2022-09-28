@@ -5,13 +5,11 @@ import {
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
-import Button from '../../components/Button';
 import Layout from '../../components/Layout';
 import productPic from '../../assets/bag.jpeg';
 import Link from 'next/link';
-import ModalNav from '../../components/ModalNav';
 import BackBtn from '../../components/BackBtn';
-import ModalBox from '../../components/ModalBox';
+import ReportChatModal from '../../components/ReportChatModal';
 
 const ChatDetail: NextPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,10 +18,6 @@ const ChatDetail: NextPage = () => {
   const handleReportClick = () => {
     setIsMenuOpen(false);
     setIsModalOpen(true);
-  };
-
-  const onModalClick = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -133,122 +127,7 @@ const ChatDetail: NextPage = () => {
           />
           <PaperAirplaneIcon className="w-7 h-7" />
         </div>
-        {isModalOpen && (
-          <div>
-            <div className="flex justify-center">
-              <ModalBox>
-                <ModalNav onClick={onModalClick} text="유저 신고하기" />
-                <div className="p-6">
-                  <div className="flex flex-col items-center mb-2 text-gray-600">
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason1"
-                        type="radio"
-                        value="reason1"
-                        name="report"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason1"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        비매너 사용자입니다.
-                      </label>
-                    </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason2"
-                        type="radio"
-                        value="reason2"
-                        name="report"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason2"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        욕설을 합니다.
-                      </label>
-                    </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason3"
-                        type="radio"
-                        value="reason3"
-                        name="report"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason3"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        성희롱을 합니다.
-                      </label>
-                    </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason4"
-                        type="radio"
-                        value="reason4"
-                        name="report"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason4"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        사기당했습니다.
-                      </label>
-                    </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason5"
-                        type="radio"
-                        value="reason5"
-                        name="report"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason5"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        정치, 종교 대화를 시도합니다.
-                      </label>
-                    </div>
-                    <div className="my-2 w-full">
-                      <input
-                        id="reason6"
-                        type="radio"
-                        value="reason6"
-                        name="report"
-                        className="mr-3"
-                      />
-                      <label
-                        htmlFor="reason6"
-                        className="w-full py-2 text-sm sm:text-base"
-                      >
-                        기타
-                        <div className="ml-6">
-                          <textarea
-                            rows={4}
-                            className="block mt-3 w-full border-gray-400"
-                          />
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                  <div className="flex justify-end">
-                    <Button text="신고하기" />
-                  </div>
-                </div>
-              </ModalBox>
-              <div
-                onClick={() => setIsModalOpen(false)}
-                className="fixed bg-gray-300 opacity-50 top-0 left-0 w-full h-full"
-              ></div>
-            </div>
-          </div>
-        )}
+        {isModalOpen && <ReportChatModal setIsModalOpen={setIsModalOpen} />}
       </div>
     </Layout>
   );
