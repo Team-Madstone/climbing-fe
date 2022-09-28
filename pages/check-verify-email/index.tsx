@@ -36,7 +36,7 @@ const CheckVerifyEmail: NextPage = () => {
         variables: {
           returnUrl: returnUrl,
         },
-        fetchPolicy: 'no-cache',
+        fetchPolicy: 'network-only',
         ...(isClientSide && {
           context: {
             headers: {
@@ -56,7 +56,7 @@ const CheckVerifyEmail: NextPage = () => {
         가입한 이메일로 인증을 완료해주세요.
       </p>
       <Link href={'/'}>
-        <span className="inline-block bg-indigo-600 px-5 py-3 rounded-sm text-sm text-white mt-16">
+        <span className="inline-block bg-indigo-600 px-5 py-3 rounded-sm text-sm text-white mt-16 cursor-pointer">
           홈으로 가기
         </span>
       </Link>
