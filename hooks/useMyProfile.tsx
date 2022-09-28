@@ -1,5 +1,6 @@
-import { gql, useLazyQuery, useReactiveVar } from '@apollo/client';
+import { useLazyQuery, useReactiveVar } from '@apollo/client';
 import { useEffect, useState } from 'react';
+import { GET_MY_PROFILE_QUERY } from '../apollo-request';
 import {
   hasLoginTokenVar,
   isClientSideVar,
@@ -8,15 +9,6 @@ import {
 } from '../apollo-store';
 import { IGetMyProfileResult } from '../types/type';
 
-const GET_MY_PROFILE_QUERY = gql`
-  query getMyProfile {
-    getMyProfileResult @rest(path: "my-profile") {
-      status
-      data
-    }
-  }
-`;
-
 const getLoginToken = () => localStorage.getItem(LOGIN_TOKEN);
 
 const useMyProfile = () => {
@@ -24,28 +16,27 @@ const useMyProfile = () => {
   const hasLoginToken = useReactiveVar(hasLoginTokenVar);
   const [isFetched, setIsFetched] = useState(false);
   const user = useReactiveVar(loginUserVar);
-  const [getMyProfile] =
-    useLazyQuery<IGetMyProfileResult>(GET_MY_PROFILE_QUERY);
+  const [getMyProfile, { refetch }] = useLazyQuery<IGetMyProfileResult>(
+    GET_MY_PROFILE_QUERY,
+    {
+      fetchPolicy: 'cache-and-network',
+      ...(isClientSide && {
+        context: {
+          headers: {
+            authorization: `Bearer ${getLoginToken()}`,
+          },
+        },
+      }),
+      onCompleted: (data) => {
+        console.log(data);
+        loginUserVar(data?.getMyProfileResult?.data?.user);
+        setIsFetched(true);
+      },
+    }
+  );
 
   useEffect(() => {
-    isClientSide &&
-      hasLoginToken &&
-      getMyProfile({
-        fetchPolicy: 'no-cache',
-        ...(isClientSide && {
-          context: {
-            headers: {
-              authorization: `Bearer ${getLoginToken()}`,
-            },
-          },
-        }),
-        onCompleted: (data) => {
-          console.log(data);
-          loginUserVar(data?.getMyProfileResult?.data?.user);
-          setIsFetched(true);
-        },
-      });
-        setIsFetched(true);
+    isClientSide && hasLoginToken && getMyProfile();
   }, [isClientSide, hasLoginToken, getMyProfile]);
 
   return {
@@ -53,6 +44,7 @@ const useMyProfile = () => {
     hasLoginToken,
     isFetched,
     user,
+    refetch,
   };
 };
 
