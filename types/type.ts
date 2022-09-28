@@ -36,3 +36,19 @@ export interface IForgotPasswordResult {
     message: string;
   };
 }
+
+export interface IResetPasswordResult {
+  resetPasswordResult: {
+    status: boolean;
+    message: string;
+    errors: string;
+  };
+}
+
+export interface IUpdateProfileResult {
+  updateProfileResult: {
+    status: boolean;
+    message: string;
+    errors: string;
+  };
+}
