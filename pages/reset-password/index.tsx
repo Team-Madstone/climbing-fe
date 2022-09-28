@@ -32,6 +32,7 @@ const ResetPassword: NextPage = () => {
   const isClientSide = useReactiveVar(isClientSideVar);
   const [token, setToken] = useState('');
   const [email, setEmail] = useState('');
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     if (isClientSide) {
@@ -53,6 +54,10 @@ const ResetPassword: NextPage = () => {
           password,
           token,
           email,
+        },
+        onCompleted: () => {
+          alert('비밀번호 재설정이 완료되었습니다.');
+          setDisabled(true);
         },
       });
   };
@@ -114,7 +119,7 @@ const ResetPassword: NextPage = () => {
                   <button
                     type="submit"
                     className="flex w-full justify-center rounded-sm border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-200"
-                    disabled={loading || !isValid}
+                    disabled={loading || !isValid || disabled}
                   >
                     {loading ? '요청중' : '비밀번호 재설정'}
                   </button>
