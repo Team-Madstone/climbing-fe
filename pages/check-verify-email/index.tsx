@@ -27,6 +27,9 @@ const CheckVerifyEmail: NextPage = () => {
     EMAIL_VERIFICATION_MUTATION,
     {
       onError: (error) => undefined,
+      onCompleted: () => {
+        alert('이메일 발송이 완료되었습니다.');
+      },
     }
   );
 
