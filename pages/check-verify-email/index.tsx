@@ -6,6 +6,7 @@ import {
   isClientSideVar,
   LOGIN_TOKEN,
 } from '../../apollo-store';
+import Button from '../../components/Button';
 import { returnUrl } from '../../shared/constances';
 
 const EMAIL_VERIFICATION_MUTATION = gql`
@@ -56,9 +57,7 @@ const CheckVerifyEmail: NextPage = () => {
         가입한 이메일로 인증을 완료해주세요.
       </p>
       <Link href={'/'}>
-        <span className="inline-block bg-indigo-600 px-5 py-3 rounded-sm text-sm text-white mt-16 cursor-pointer">
-          홈으로 가기
-        </span>
+        <Button text="홈으로 가기" />
       </Link>
       <button
         type="button"
