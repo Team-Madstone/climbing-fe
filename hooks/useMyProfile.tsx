@@ -2,6 +2,7 @@ import { useLazyQuery, useReactiveVar } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { GET_MY_PROFILE_QUERY } from '../apollo-request';
 import {
+  handleLogout,
   hasLoginTokenVar,
   isClientSideVar,
   loginUserVar,
@@ -30,6 +31,9 @@ const useMyProfile = () => {
       onCompleted: (data) => {
         loginUserVar(data?.getMyProfileResult?.data?.user);
         setIsFetched(true);
+      },
+      onError: () => {
+        handleLogout();
       },
     }
   );
