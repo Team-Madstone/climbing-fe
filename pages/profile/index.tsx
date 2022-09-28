@@ -11,14 +11,14 @@ import productPic3 from '../../assets/bag3.png';
 import HeartBtn from '../../components/heartBtn';
 import BookmarkBtn from '../../components/bookmarkBtn';
 import React, { useState } from 'react';
-import { PlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import MeetupBox from '../../components/meetupBox';
-import ModalNav from '../../components/modalNav';
-import ModalBox from '../../components/modalBox';
 import { useRouter } from 'next/router';
 import useMyProfile from '../../hooks/useMyProfile';
 import { classNames } from '../../shared/share';
+import { useReactiveVar } from '@apollo/client';
+import { loginUserVar } from '../../apollo-store';
+import UpdateProfileModal from '../../components/updateProfileModal';
 
 const tabs = [
   { id: 1, name: '북마크 한 암장 정보' },
@@ -100,30 +100,24 @@ const products = [
 
 const Profile: NextPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTab, setSelectedTab] = useState<number>(1);
+  const [selectedTab, setSelectedTab] = useState<string>('bookmarkedGymInfo');
 
   const router = useRouter();
-  const { isClientSide, hasLoginToken, user } = useMyProfile();
+  const { user } = useMyProfile();
+  const loginUser = useReactiveVar(loginUserVar);
 
   const onTabChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedTab(parseInt(e.target.value));
-  };
-
-  const onModalClick = () => {
-    setIsModalOpen(false);
+    setSelectedTab(e.target.value);
   };
 
   const checkEmailVerified = () => {
-    if (hasLoginToken) {
-      if (user) {
-        if (!user.email_verified_at) {
-          router.push('/check-verify-email');
-          return;
-        } else {
-          // 북마크 기능
-          setIsModalOpen(true);
-          return;
-        }
+    if (loginUser) {
+      if (loginUser.email_verified_at) {
+        setIsModalOpen(true);
+        return;
+      } else {
+        router.push('/check-verify-email');
+        return;
       }
     } else {
       router.push('/login');
@@ -139,7 +133,7 @@ const Profile: NextPage = () => {
       <div>
         <div className="flex flex-col">
           <span className="block w-24 h-24 bg-gray-200 rounded-full mx-auto"></span>
-          <p className="mx-auto mt-4 text-xl">jelly</p>
+          <p className="mx-auto mt-4 text-xl">{user?.name}</p>
           <div className="flex justify-center pt-4">
             <Button onClick={checkEmailVerified} text="프로필 수정" />
           </div>
@@ -163,42 +157,42 @@ const Profile: NextPage = () => {
                 <ul className="flex justify-center w-full cursor-pointer text-sm">
                   <li
                     className={classNames(
-                      selectedTab === 1
+                      selectedTab === 'bookmarkedGymInfo'
                         ? 'border-b-2 border-indigo-600 text-gray-700'
                         : 'text-gray-500 border-b-1 border-gray-300',
                       'w-1/3 py-3 -mx-px text-center'
                     )}
                     onClick={(e) => {
                       e.preventDefault();
-                      setSelectedTab(1);
+                      setSelectedTab('bookmarkedGymInfo');
                     }}
                   >
                     북마크 한 암장 정보
                   </li>
                   <li
                     className={classNames(
-                      selectedTab === 2
+                      selectedTab === 'bookmarkedMeetup'
                         ? 'border-b-2 border-indigo-600 text-gray-700'
                         : 'text-gray-500 border-b-1 border-gray-300',
                       'w-1/3 py-3 -mx-px text-center'
                     )}
                     onClick={(e) => {
                       e.preventDefault();
-                      setSelectedTab(2);
+                      setSelectedTab('bookmarkedMeetup');
                     }}
                   >
                     북마크 한 동행 모집
                   </li>
                   <li
                     className={classNames(
-                      selectedTab === 3
+                      selectedTab === 'bookmarkedDeal'
                         ? 'border-b-2 border-indigo-600 text-gray-700'
                         : 'text-gray-500 border-b-1 border-gray-300',
                       'w-1/3 py-3 -mx-px text-center'
                     )}
                     onClick={(e) => {
                       e.preventDefault();
-                      setSelectedTab(3);
+                      setSelectedTab('bookmarkedDeal');
                     }}
                   >
                     북마크 한 중고 거래
@@ -209,7 +203,9 @@ const Profile: NextPage = () => {
           </div>
 
           {/* 암장 정보 */}
-          <div className={selectedTab === 1 ? 'block' : 'hidden'}>
+          <div
+            className={selectedTab === 'bookmarkedGymInfo' ? 'block' : 'hidden'}
+          >
             <div className="mx-auto pt-4 sm:pt-6">
               <div className="flex flex-col justify-center items-center sm:grid grid-cols-1 gap-y-8 sm:grid-cols-2 gap-x-6 xl:gap-x-8">
                 {gyms.map((gym) => (
@@ -245,7 +241,9 @@ const Profile: NextPage = () => {
           </div>
 
           {/* 북마크 한 동행 모집*/}
-          <div className={selectedTab === 2 ? 'block' : 'hidden'}>
+          <div
+            className={selectedTab === 'bookmarkedMeetup' ? 'block' : 'hidden'}
+          >
             <div className="mx-auto pt-4 sm:pt-6">
               <div className="overflow-hidden bg-white">
                 <ul role="list">
@@ -258,7 +256,9 @@ const Profile: NextPage = () => {
           </div>
 
           {/* 북마크 한 중고 거래  */}
-          <div className={selectedTab === 3 ? 'block' : 'hidden'}>
+          <div
+            className={selectedTab === 'bookmarkedDeal' ? 'block' : 'hidden'}
+          >
             <div className="mx-auto pt-4 sm:pt-6">
               <div className="flex flex-col justify-center items-center sm:grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 xl:gap-x-8">
                 {products.map((product) => (
@@ -291,58 +291,7 @@ const Profile: NextPage = () => {
             </div>
           </div>
           {isModalOpen && (
-            <div className="flex justify-center">
-              <ModalBox>
-                <ModalNav onClick={onModalClick} text="프로필 수정" />
-                <div>
-                  <div className="flex justify-center w-full">
-                    <div className="relative inline-block mt-6">
-                      <span className="block w-24 h-24 bg-gray-200 rounded-full mx-auto"></span>
-                      <div className="absolute top-0 right-0 bg-white border border-gray-500 p-1 rounded-full cursor-pointer">
-                        <PlusIcon className="w-4 h-4 text-gray-600 stroke-2" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="mb-3">
-                      <label
-                        htmlFor="nickname"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        닉네임
-                      </label>
-                      <input
-                        type="text"
-                        id="nickname"
-                        name="nickname"
-                        className="mt-1 block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label
-                        htmlFor="password"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        비밀번호
-                      </label>
-                      <input
-                        type="text"
-                        id="password"
-                        name="password"
-                        className="mt-1 block w-full rounded-sm border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                    <div className="flex justify-end pt-2">
-                      <Button text="저장" />
-                    </div>
-                  </div>
-                </div>
-              </ModalBox>
-              <div
-                onClick={() => setIsModalOpen(false)}
-                className="fixed bg-gray-300 opacity-50 top-0 left-0 w-full h-full"
-              ></div>
-            </div>
+            <UpdateProfileModal setIsModalOpen={setIsModalOpen} />
           )}
         </div>
       </div>
