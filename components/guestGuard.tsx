@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import useMyProfile from '../hooks/useMyProfile';
-import Loading from './loading';
+import Loading from './Loading';
 
 interface IProps {
   children: React.ReactNode;

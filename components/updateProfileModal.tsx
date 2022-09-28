@@ -3,11 +3,11 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 import { useForm } from 'react-hook-form';
 import { UPDATE_PROFILE_MUTATION } from '../apollo-request';
 import { isClientSideVar, isServerError, LOGIN_TOKEN } from '../apollo-store';
-import Button from './button';
-import ModalBox from './modalBox';
-import ModalNav from './modalNav';
 import useMyProfile from '../hooks/useMyProfile';
 import { IUpdateProfileResult } from '../types/type';
+import Button from './Button';
+import ModalBox from './ModalBox';
+import ModalNav from './ModalNav';
 
 interface FormInput {
   password: String;

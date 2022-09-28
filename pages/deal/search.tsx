@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import BackBtn from '../../components/backBtn';
-import SearchBar from '../../components/searchBar';
+import BackBtn from '../../components/BackBtn';
+import SearchBar from '../../components/SearchBar';
 
 const Search: NextPage = () => {
   return (

@@ -5,13 +5,13 @@ import {
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
-import Button from '../../components/button';
-import Layout from '../../components/layout';
+import Button from '../../components/Button';
+import Layout from '../../components/Layout';
 import productPic from '../../assets/bag.jpeg';
 import Link from 'next/link';
-import ModalNav from '../../components/modalNav';
-import BackBtn from '../../components/backBtn';
-import ModalBox from '../../components/modalBox';
+import ModalNav from '../../components/ModalNav';
+import BackBtn from '../../components/BackBtn';
+import ModalBox from '../../components/ModalBox';
 
 const ChatDetail: NextPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

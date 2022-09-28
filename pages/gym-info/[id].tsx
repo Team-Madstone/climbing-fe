@@ -7,17 +7,17 @@ import {
 } from '@heroicons/react/24/outline';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import img from '../../assets/august.jpeg';
-import MeetupBox from '../../components/meetupBox';
-import HeartBtn from '../../components/heartBtn';
-import BookmarkBtn from '../../components/bookmarkBtn';
-import BackBtn from '../../components/backBtn';
+import MeetupBox from '../../components/MeetupBox';
+import HeartBtn from '../../components/HeartBtn';
+import BookmarkBtn from '../../components/BookmarkBtn';
+import BackBtn from '../../components/BackBtn';
 import { useState } from 'react';
-import Button from '../../components/button';
-import ModalNav from '../../components/modalNav';
-import ModalBox from '../../components/modalBox';
-import AuthGuard from '../../components/authGuard';
+import Button from '../../components/Button';
+import ModalNav from '../../components/ModalNav';
+import ModalBox from '../../components/ModalBox';
+import AuthGuard from '../../components/AuthGuard';
 
 const positions = [
   {

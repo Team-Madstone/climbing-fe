@@ -4,9 +4,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { handleLogin, isServerError } from '../../apollo-store';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import GuestGuard from '../../components/guestGuard';
+import GuestGuard from '../../components/GuestGuard';
 import { ILoginResult } from '../../types/type';
 import { LOGIN_MUTATION } from '../../apollo-request';
 

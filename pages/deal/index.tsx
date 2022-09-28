@@ -1,12 +1,12 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import productPic from '../../assets/bag.jpeg';
 import productPic2 from '../../assets/shoes.jpeg';
 import productPic3 from '../../assets/bag3.png';
-import SearchBar from '../../components/searchBar';
-import DealBox from '../../components/dealBox';
-import WriteIcon from '../../components/writeIcon';
+import SearchBar from '../../components/SearchBar';
+import DealBox from '../../components/DealBox';
+import WriteIcon from '../../components/WriteIcon';
 
 const products = [
   {

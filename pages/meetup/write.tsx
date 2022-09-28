@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import AuthGuard from '../../components/authGuard';
-import BackBtn from '../../components/backBtn';
-import Button from '../../components/button';
-import Layout from '../../components/layout';
+import AuthGuard from '../../components/AuthGuard';
+import BackBtn from '../../components/BackBtn';
+import Button from '../../components/Button';
+import Layout from '../../components/Layout';
 
 const Write: NextPage = () => {
   return (

@@ -1,18 +1,18 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import img from '../../assets/bag3.png';
 import Image from 'next/image';
-import Button from '../../components/button';
-import HeartBtn from '../../components/heartBtn';
-import BookmarkBtn from '../../components/bookmarkBtn';
-import BackBtn from '../../components/backBtn';
+import Button from '../../components/Button';
+import HeartBtn from '../../components/HeartBtn';
+import BookmarkBtn from '../../components/BookmarkBtn';
+import BackBtn from '../../components/BackBtn';
 import { EllipsisVerticalIcon, LinkIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import Link from 'next/link';
-import ModalNav from '../../components/modalNav';
-import ModalBox from '../../components/modalBox';
-import AuthGuard from '../../components/authGuard';
+import ModalNav from '../../components/ModalNav';
+import ModalBox from '../../components/ModalBox';
+import AuthGuard from '../../components/AuthGuard';
 
 const DealDetail: NextPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

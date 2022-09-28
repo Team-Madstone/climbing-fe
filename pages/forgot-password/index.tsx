@@ -1,13 +1,13 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import Link from 'next/link';
 import { isServerError } from '../../apollo-store';
 import { IForgotPasswordResult } from '../../types/type';
 import { resetPwReturnUrl } from '../../shared/constances';
-import GuestGuard from '../../components/guestGuard';
+import GuestGuard from '../../components/GuestGuard';
 import { FORGOT_PASSWORD_MUTATION } from '../../apollo-request';
 
 interface FormInput {

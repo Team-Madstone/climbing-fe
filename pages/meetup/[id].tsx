@@ -10,14 +10,14 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
-import AuthGuard from '../../components/authGuard';
-import BackBtn from '../../components/backBtn';
-import BookmarkBtn from '../../components/bookmarkBtn';
-import Button from '../../components/button';
-import HeartBtn from '../../components/heartBtn';
-import Layout from '../../components/layout';
-import ModalBox from '../../components/modalBox';
-import ModalNav from '../../components/modalNav';
+import AuthGuard from '../../components/AuthGuard';
+import BackBtn from '../../components/BackBtn';
+import BookmarkBtn from '../../components/BookmarkBtn';
+import Button from '../../components/Button';
+import HeartBtn from '../../components/HeartBtn';
+import Layout from '../../components/Layout';
+import ModalBox from '../../components/ModalBox';
+import ModalNav from '../../components/ModalNav';
 
 const MeetupDetail: NextPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

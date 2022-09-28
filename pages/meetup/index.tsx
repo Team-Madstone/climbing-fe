@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Layout from '../../components/layout';
-import MeetupBox from '../../components/meetupBox';
-import SearchBar from '../../components/searchBar';
-import WriteIcon from '../../components/writeIcon';
+import Layout from '../../components/Layout';
+import MeetupBox from '../../components/MeetupBox';
+import SearchBar from '../../components/SearchBar';
+import WriteIcon from '../../components/WriteIcon';
 
 const positions = [
   {

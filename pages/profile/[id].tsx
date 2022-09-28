@@ -1,19 +1,19 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Button from '../../components/button';
-import Layout from '../../components/layout';
+import Button from '../../components/Button';
+import Layout from '../../components/Layout';
 import productPic from '../../assets/bag.jpeg';
 import productPic2 from '../../assets/shoes.jpeg';
 import productPic3 from '../../assets/bag3.png';
-import HeartBtn from '../../components/heartBtn';
-import BookmarkBtn from '../../components/bookmarkBtn';
+import HeartBtn from '../../components/HeartBtn';
+import BookmarkBtn from '../../components/BookmarkBtn';
 import { useState } from 'react';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
-import BackBtn from '../../components/backBtn';
-import MeetupBox from '../../components/meetupBox';
+import BackBtn from '../../components/BackBtn';
+import MeetupBox from '../../components/MeetupBox';
 import Link from 'next/link';
-import ModalBox from '../../components/modalBox';
-import ModalNav from '../../components/modalNav';
+import ModalBox from '../../components/ModalBox';
+import ModalNav from '../../components/ModalNav';
 import { classNames } from '../../shared/share';
 
 const tabs = [

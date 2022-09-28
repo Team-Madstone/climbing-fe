@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import gymPic from '../assets/august.jpeg';
 import gymPic2 from '../assets/august2.jpeg';
 import gymPic3 from '../assets/theclimbsnu.png';
 import { useState } from 'react';
-import SearchBar from '../components/searchBar';
-import GymInfoBox from '../components/gymInfoBox';
+import SearchBar from '../components/SearchBar';
+import GymInfoBox from '../components/GymInfoBox';
 
 const gyms = [
   {

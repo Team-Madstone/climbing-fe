@@ -4,8 +4,8 @@ import {
   UsersIcon,
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import BookmarkBtn from './bookmarkBtn';
-import HeartBtn from './heartBtn';
+import BookmarkBtn from './BookmarkBtn';
+import HeartBtn from './HeartBtn';
 
 interface MeetupBoxProps {
   position: {

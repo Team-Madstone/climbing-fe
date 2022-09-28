@@ -1,24 +1,24 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Button from '../../components/button';
-import Layout from '../../components/layout';
+import Button from '../../components/Button';
+import Layout from '../../components/Layout';
 import gymPic from '../../assets/august.jpeg';
 import gymPic2 from '../../assets/august2.jpeg';
 import gymPic3 from '../../assets/theclimbsnu.png';
 import productPic from '../../assets/bag.jpeg';
 import productPic2 from '../../assets/shoes.jpeg';
 import productPic3 from '../../assets/bag3.png';
-import HeartBtn from '../../components/heartBtn';
-import BookmarkBtn from '../../components/bookmarkBtn';
+import HeartBtn from '../../components/HeartBtn';
+import BookmarkBtn from '../../components/BookmarkBtn';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import MeetupBox from '../../components/meetupBox';
+import MeetupBox from '../../components/MeetupBox';
 import { useRouter } from 'next/router';
 import useMyProfile from '../../hooks/useMyProfile';
 import { classNames } from '../../shared/share';
 import { useReactiveVar } from '@apollo/client';
 import { loginUserVar } from '../../apollo-store';
-import UpdateProfileModal from '../../components/updateProfileModal';
+import UpdateProfileModal from '../../components/UpdateProfileModal';
 
 const tabs = [
   { id: 1, name: '북마크 한 암장 정보' },

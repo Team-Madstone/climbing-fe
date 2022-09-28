@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import AuthGuard from '../../components/authGuard';
-import ChatList from '../../components/chatList';
-import Layout from '../../components/layout';
+import AuthGuard from '../../components/AuthGuard';
+import ChatList from '../../components/ChatList';
+import Layout from '../../components/Layout';
 
 const people = [
   {
