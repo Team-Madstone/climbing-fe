@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -9,28 +9,7 @@ import GuestGuard from '../../components/guestGuard';
 import { IRegisterResult } from '../../types/type';
 import { returnUrl } from '../../shared/constances';
 import { handleLogin, isServerError } from '../../apollo-store';
-
-const REGISTER_MUTATION = gql`
-  mutation register(
-    $name: String!
-    $email: String!
-    $password: String!
-    $returnUrl: String!
-  ) {
-    registerResult(
-      input: {
-        name: $name
-        email: $email
-        password: $password
-        returnUrl: $returnUrl
-      }
-    ) @rest(method: "POST", path: "register") {
-      status
-      message
-      token
-    }
-  }
-`;
+import { REGISTER_MUTATION } from '../../apollo-request';
 
 interface FormInput {
   email: String;

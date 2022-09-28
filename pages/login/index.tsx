@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -8,17 +8,7 @@ import Layout from '../../components/layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import GuestGuard from '../../components/guestGuard';
 import { ILoginResult } from '../../types/type';
-
-const LOGIN_MUTATION = gql`
-  mutation login($email: String!, $password: String!) {
-    loginResult(input: { email: $email, password: $password })
-      @rest(method: "POST", path: "login") {
-      status
-      message
-      token
-    }
-  }
-`;
+import { LOGIN_MUTATION } from '../../apollo-request';
 
 interface FormInput {
   email: String;
@@ -158,7 +148,7 @@ const Login: NextPage = () => {
                   </Link>
                 </div>
                 <div className="flex justify-center">
-                  <Link href="/findPassword">
+                  <Link href="/forgot-password">
                     <button className="text-sm text-gray-500 hover:text-gray-700">
                       비밀번호 찾기
                     </button>
