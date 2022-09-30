@@ -63,7 +63,7 @@ const CheckVerifyEmail: NextPage = () => {
       <Button
         onClick={emailVerifiedClick}
         disabled={loading}
-        text="이메일 재전송"
+        text={loading ? '이메일 전송중' : '이메일 재전송'}
       />
     </div>
   );
