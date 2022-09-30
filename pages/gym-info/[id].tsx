@@ -14,10 +14,7 @@ import HeartBtn from '../../components/HeartBtn';
 import BookmarkBtn from '../../components/BookmarkBtn';
 import BackBtn from '../../components/BackBtn';
 import { useState } from 'react';
-import Button from '../../components/Button';
-import ModalNav from '../../components/ModalNav';
-import ModalBox from '../../components/ModalBox';
-import AuthGuard from '../../components/AuthGuard';
+import ReportGymModal from '../../components/ReportGymModal';
 
 const positions = [
   {
@@ -47,10 +44,6 @@ const GymInfoDetail: NextPage = () => {
   const handleReportClick = () => {
     setIsMenuOpen(false);
     setIsModalOpen(true);
-  };
-
-  const onModalClick = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -132,40 +125,7 @@ const GymInfoDetail: NextPage = () => {
             ))}
           </ul>
         </div>
-        {isModalOpen && (
-          <AuthGuard>
-            <div>
-              <div className="flex justify-center">
-                <ModalBox>
-                  <ModalNav
-                    onClick={onModalClick}
-                    text="잘못된 정보 신고하기"
-                  />
-                  <div className="p-6">
-                    <div className="flex flex-col items-center mb-4">
-                      <div className=" w-full">
-                        <p className="text-sm sm:text-base text-gray-600">
-                          잘못된 정보를 알려주세요
-                        </p>
-                        <textarea
-                          rows={4}
-                          className="block mt-4 w-full border-gray-400"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex justify-end">
-                      <Button text="신고하기" />
-                    </div>
-                  </div>
-                </ModalBox>
-                <div
-                  onClick={() => setIsModalOpen(false)}
-                  className="fixed bg-gray-300 opacity-50 top-0 left-0 w-full h-full"
-                ></div>
-              </div>
-            </div>
-          </AuthGuard>
-        )}
+        {isModalOpen && <ReportGymModal setIsModalOpen={setIsModalOpen} />}
       </div>
     </Layout>
   );

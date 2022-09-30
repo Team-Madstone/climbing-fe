@@ -10,7 +10,6 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
-import AuthGuard from '../../components/AuthGuard';
 import BackBtn from '../../components/BackBtn';
 import BookmarkBtn from '../../components/BookmarkBtn';
 import Button from '../../components/Button';
@@ -18,6 +17,7 @@ import HeartBtn from '../../components/HeartBtn';
 import Layout from '../../components/Layout';
 import ModalBox from '../../components/ModalBox';
 import ModalNav from '../../components/ModalNav';
+import ReportMeetupModal from '../../components/ReportMeetupModal';
 
 const MeetupDetail: NextPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,10 +27,6 @@ const MeetupDetail: NextPage = () => {
   const handleReportClick = () => {
     setIsMenuOpen(false);
     setIsModalOpen(true);
-  };
-
-  const onModalClick = () => {
-    setIsModalOpen(false);
   };
 
   const onMemberClick = () => {
@@ -129,124 +125,7 @@ const MeetupDetail: NextPage = () => {
             <div className="mt-2 flex items-center text-sm sm:mt-0"></div>
           </div>
         </div>
-        {isModalOpen && (
-          <AuthGuard>
-            <div>
-              <div className="flex justify-center items-center">
-                <ModalBox>
-                  <ModalNav onClick={onModalClick} text="동행 모집 신고하기" />
-                  <div className="p-6">
-                    <div className="flex flex-col items-center mb-2 text-gray-600">
-                      <div className="my-2 w-full">
-                        <input
-                          id="reason1"
-                          type="radio"
-                          value="reason1"
-                          name="report"
-                          className="mr-3"
-                        />
-                        <label
-                          htmlFor="reason1"
-                          className="w-full py-2 text-sm sm:text-base"
-                        >
-                          부적절한 모임입니다.
-                        </label>
-                      </div>
-                      <div className="my-2 w-full">
-                        <input
-                          id="reason2"
-                          type="radio"
-                          value="reason2"
-                          name="report"
-                          className="mr-3"
-                        />
-                        <label
-                          htmlFor="reason2"
-                          className="w-full py-2 text-sm sm:text-base"
-                        >
-                          광고 / 홍보 글입니다.
-                        </label>
-                      </div>
-                      <div className="my-2 w-full">
-                        <input
-                          id="reason3"
-                          type="radio"
-                          value="reason3"
-                          name="report"
-                          className="mr-3"
-                        />
-                        <label
-                          htmlFor="reason3"
-                          className="w-full py-2 text-sm sm:text-base"
-                        >
-                          중복, 도배성 글입니다.
-                        </label>
-                      </div>
-                      <div className="my-2 w-full">
-                        <input
-                          id="reason4"
-                          type="radio"
-                          value="reason4"
-                          name="report"
-                          className="mr-3"
-                        />
-                        <label
-                          htmlFor="reason4"
-                          className="w-full py-2 text-sm sm:text-base"
-                        >
-                          비방하는 글입니다.
-                        </label>
-                      </div>
-                      <div className="my-2 w-full">
-                        <input
-                          id="reason5"
-                          type="radio"
-                          value="reason5"
-                          name="report"
-                          className="mr-3"
-                        />
-                        <label
-                          htmlFor="reason5"
-                          className="w-full py-2 text-sm sm:text-base"
-                        >
-                          관련 없는 글입니다.
-                        </label>
-                      </div>
-                      <div className="my-2 w-full">
-                        <input
-                          id="reason6"
-                          type="radio"
-                          value="reason6"
-                          name="report"
-                          className="mr-3"
-                        />
-                        <label
-                          htmlFor="reason6"
-                          className="w-full py-2 text-sm sm:text-base"
-                        >
-                          기타
-                          <div className="ml-6">
-                            <textarea
-                              rows={4}
-                              className="block mt-3 w-full border-gray-400"
-                            />
-                          </div>
-                        </label>
-                      </div>
-                    </div>
-                    <div className="flex justify-end">
-                      <Button text="신고하기" />
-                    </div>
-                  </div>
-                </ModalBox>
-                <div
-                  onClick={() => setIsModalOpen(false)}
-                  className="fixed bg-gray-300 opacity-50 top-0 left-0 w-full h-full"
-                ></div>
-              </div>
-            </div>
-          </AuthGuard>
-        )}
+        {isModalOpen && <ReportMeetupModal setIsModalOpen={setIsModalOpen} />}
         {isMemberOpen && (
           <div>
             <div className="flex justify-center items-center">
