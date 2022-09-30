@@ -4,6 +4,7 @@ export const GET_MY_PROFILE_QUERY = gql`
   query getMyProfile {
     getMyProfileResult @rest(path: "my-profile") {
       status
+      message
       data
     }
   }
