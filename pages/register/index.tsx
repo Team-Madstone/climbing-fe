@@ -1,7 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import React, { useEffect } from 'react';
 import Layout from '../../components/Layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -10,6 +9,8 @@ import { IRegisterResult } from '../../types/type';
 import { returnUrl } from '../../shared/constances';
 import { handleLogin, isServerError } from '../../apollo-store';
 import { REGISTER_MUTATION } from '../../apollo-request';
+import Anchor from '../../components/Anchor';
+import Button from '../../components/Button';
 
 interface FormInput {
   email: String;
@@ -188,20 +189,15 @@ const Register: NextPage = () => {
                 </div>
 
                 <div>
-                  <button
+                  <Button
                     type="submit"
-                    className="flex w-full justify-center rounded-sm border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-200"
+                    text={loading ? '요청중' : '회원가입'}
                     disabled={loading || !isValid}
-                  >
-                    {loading ? '요청중' : '회원가입'}
-                  </button>
+                    styling="fullBtn"
+                  />
                 </div>
                 <div className="flex justify-center">
-                  <Link href="/login">
-                    <button className="text-sm text-gray-500 hover:text-gray-700">
-                      로그인
-                    </button>
-                  </Link>
+                  <Anchor href={'/login'} text="로그인" styling="textOnly" />
                 </div>
               </form>
             </div>

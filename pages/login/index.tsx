@@ -1,7 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { handleLogin, isServerError } from '../../apollo-store';
 import Layout from '../../components/Layout';
@@ -9,6 +8,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import GuestGuard from '../../components/GuestGuard';
 import { ILoginResult } from '../../types/type';
 import { LOGIN_MUTATION } from '../../apollo-request';
+import Button from '../../components/Button';
+import Anchor from '../../components/Anchor';
 
 interface FormInput {
   email: String;
@@ -132,27 +133,26 @@ const Login: NextPage = () => {
                 </div>
 
                 <div>
-                  <button
+                  <Button
+                    styling={'fullBtn'}
                     type="submit"
-                    className="flex w-full justify-center rounded-sm border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-200"
+                    text={loading ? '로딩중' : '로그인'}
                     disabled={loading || !isValid}
-                  >
-                    {loading ? '로딩중' : '로그인'}
-                  </button>
+                  />
                 </div>
                 <div className="flex justify-center">
-                  <Link href="/register">
-                    <button className="text-sm text-gray-600 py-2 px-4 border bg-indigo-50 hover:bg-indigo-100 rounded-sm w-full">
-                      회원가입
-                    </button>
-                  </Link>
+                  <Anchor
+                    href={'register'}
+                    text="회원가입"
+                    styling="fullLightBtn"
+                  />
                 </div>
                 <div className="flex justify-center">
-                  <Link href="/forgot-password">
-                    <button className="text-sm text-gray-500 hover:text-gray-700">
-                      비밀번호 찾기
-                    </button>
-                  </Link>
+                  <Anchor
+                    styling="textOnly"
+                    href={'/forgot-password'}
+                    text="비밀번호 찾기"
+                  />
                 </div>
                 {error && (
                   <p className="text-red-600 text-sm">

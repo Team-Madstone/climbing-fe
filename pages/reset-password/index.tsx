@@ -1,7 +1,6 @@
 import { useMutation, useReactiveVar } from '@apollo/client';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { isClientSideVar, isServerError } from '../../apollo-store';
@@ -10,6 +9,8 @@ import Layout from '../../components/Layout';
 import queryString from 'query-string';
 import { IResetPasswordResult } from '../../types/type';
 import { RESET_PASSWORD_MUTATION } from '../../apollo-request';
+import Button from '../../components/Button';
+import Anchor from '../../components/Anchor';
 
 interface FormInput {
   password: String;
@@ -116,20 +117,15 @@ const ResetPassword: NextPage = () => {
                 </div>
 
                 <div>
-                  <button
+                  <Button
                     type="submit"
-                    className="flex w-full justify-center rounded-sm border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-indigo-200"
+                    text={loading ? '요청중' : '비밀번호 재설정'}
                     disabled={loading || !isValid || disabled}
-                  >
-                    {loading ? '요청중' : '비밀번호 재설정'}
-                  </button>
+                    styling="fullBtn"
+                  />
                 </div>
                 <div className="flex justify-center">
-                  <Link href="/login">
-                    <button className="text-sm text-gray-500 hover:text-gray-700">
-                      로그인
-                    </button>
-                  </Link>
+                  <Anchor href={'/login'} text="로그인" styling="textOnly" />
                 </div>
               </form>
             </div>
