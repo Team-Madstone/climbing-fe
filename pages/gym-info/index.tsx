@@ -7,6 +7,7 @@ import Layout from '../../components/Layout';
 import { useState } from 'react';
 import SearchBar from '../../components/SearchBar';
 import GymInfoBox from '../../components/GymInfoBox';
+import Button from '../../components/Button';
 
 const gyms = [
   {
@@ -83,13 +84,8 @@ const GymInfo: NextPage = () => {
                       관악구
                     </button>
                   </div>
-                  <div className="w-full flex justify-end">
-                    <button
-                      type="button"
-                      className="rounded-sm mt-6 border border-transparent bg-indigo-100 px-4 py-2 text-xs sm:text-sm font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                      검색하기
-                    </button>
+                  <div className="w-full flex justify-end mt-6">
+                    <Button text="검색하기" />
                   </div>
                 </div>
               </div>
@@ -100,7 +96,6 @@ const GymInfo: NextPage = () => {
             </div>
           )}
         </div>
-        {/* </div> */}
         <div className="mx-auto pt-4 sm:pt-10">
           <div className="flex flex-col justify-center items-center sm:grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 xl:gap-x-8">
             {gyms.map((gym) => (

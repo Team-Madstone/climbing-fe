@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import BackBtn from '../../components/BackBtn';
+import Button from '../../components/Button';
 
 const Search: NextPage = () => {
   return (
@@ -54,13 +55,8 @@ const Search: NextPage = () => {
             관악구
           </button>
         </div>
-        <div className="w-full flex justify-end">
-          <button
-            type="button"
-            className="rounded-sm mt-6 border border-transparent bg-indigo-100 px-4 py-2 text-xs sm:text-sm font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            검색하기
-          </button>
+        <div className="w-full flex justify-end mt-6">
+          <Button text="검색하기" />
         </div>
       </div>
     </div>
