@@ -18,7 +18,7 @@ import useMyProfile from '../../hooks/useMyProfile';
 import { classNames } from '../../shared/share';
 import { useReactiveVar } from '@apollo/client';
 import { loginUserVar } from '../../apollo-store';
-import UpdateProfileModal from '../../components/UpdateProfileModal';
+import UpdateProfileModal from '../../components/updateProfileModal';
 
 const tabs = [
   { id: 1, name: '북마크 한 암장 정보' },
