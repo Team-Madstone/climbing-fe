@@ -8,9 +8,7 @@ export interface IUser {
 
 export interface IGetMyProfileResult {
   getMyProfileResult: {
-    data: {
-      user: IUser;
-    };
+    data: IUser;
   };
 }
 

@@ -17,6 +17,7 @@ const useMyProfile = () => {
   const hasLoginToken = useReactiveVar(hasLoginTokenVar);
   const [isFetched, setIsFetched] = useState(false);
   const user = useReactiveVar(loginUserVar);
+
   const [getMyProfile, { refetch }] = useLazyQuery<IGetMyProfileResult>(
     GET_MY_PROFILE_QUERY,
     {
@@ -29,7 +30,7 @@ const useMyProfile = () => {
         },
       }),
       onCompleted: (data) => {
-        loginUserVar(data?.getMyProfileResult?.data?.user);
+        loginUserVar(data?.getMyProfileResult?.data);
         setIsFetched(true);
       },
       onError: () => {
