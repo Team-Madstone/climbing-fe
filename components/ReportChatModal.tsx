@@ -18,10 +18,10 @@ export default function ReportChatModal({ setIsModalOpen }: IProps) {
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: 'onChange' });
 
   const handleFormSubmit = () => {
-    const { reportReason } = getValues();
+    const { reportChatReason } = getValues();
   };
 
   return (
@@ -38,7 +38,7 @@ export default function ReportChatModal({ setIsModalOpen }: IProps) {
                     className="w-full py-2 text-sm sm:text-base"
                   >
                     <input
-                      {...register('reportReason')}
+                      {...register('reportChatReason')}
                       id="reason1"
                       type="radio"
                       value="비매너 사용자입니다."
@@ -54,7 +54,7 @@ export default function ReportChatModal({ setIsModalOpen }: IProps) {
                     className="w-full py-2 text-sm sm:text-base"
                   >
                     <input
-                      {...register('reportReason')}
+                      {...register('reportChatReason')}
                       id="reason2"
                       type="radio"
                       value="욕설을 합니다."
@@ -70,7 +70,7 @@ export default function ReportChatModal({ setIsModalOpen }: IProps) {
                     className="w-full py-2 text-sm sm:text-base"
                   >
                     <input
-                      {...register('reportReason')}
+                      {...register('reportChatReason')}
                       id="reason3"
                       type="radio"
                       value="성희롱을 합니다."
@@ -86,7 +86,7 @@ export default function ReportChatModal({ setIsModalOpen }: IProps) {
                     className="w-full py-2 text-sm sm:text-base"
                   >
                     <input
-                      {...register('reportReason')}
+                      {...register('reportChatReason')}
                       id="reason4"
                       type="radio"
                       value="사기당했습니다."
@@ -102,7 +102,7 @@ export default function ReportChatModal({ setIsModalOpen }: IProps) {
                     className="w-full py-2 text-sm sm:text-base"
                   >
                     <input
-                      {...register('reportReason')}
+                      {...register('reportChatReason')}
                       id="reason5"
                       type="radio"
                       value="정치, 종교 대화를 시도합니다."
@@ -118,7 +118,7 @@ export default function ReportChatModal({ setIsModalOpen }: IProps) {
                     className="w-full py-2 text-sm sm:text-base"
                   >
                     <input
-                      {...register('reportReason')}
+                      {...register('reportChatReason')}
                       id="reason6"
                       type="radio"
                       value="기타"
