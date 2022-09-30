@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
-import Link from 'next/link';
-import Button from '../../components/Button';
+import Anchor from '../../components/Anchor';
 
 const VerifyEmail: NextPage = () => {
   return (
@@ -11,9 +10,7 @@ const VerifyEmail: NextPage = () => {
         <br />
         가입한 이메일로 인증을 완료해주세요.
       </p>
-      <Link href={'/'}>
-        <Button text="홈으로 가기" />
-      </Link>
+      <Anchor href={'/'} text="홈으로 가기" />
     </div>
   );
 };

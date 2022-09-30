@@ -3,12 +3,12 @@ import Head from 'next/head';
 import Layout from '../../components/Layout';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
-import Link from 'next/link';
 import { isServerError } from '../../apollo-store';
 import { IForgotPasswordResult } from '../../types/type';
 import { resetPwReturnUrl } from '../../shared/constances';
 import GuestGuard from '../../components/GuestGuard';
 import { FORGOT_PASSWORD_MUTATION } from '../../apollo-request';
+import Anchor from '../../components/Anchor';
 
 interface FormInput {
   email: String;
@@ -112,11 +112,7 @@ const FindPassword: NextPage = () => {
                   </button>
                 </div>
                 <div className="flex justify-center">
-                  <Link href="/login">
-                    <button className="text-sm text-gray-500 hover:text-gray-700">
-                      로그인
-                    </button>
-                  </Link>
+                  <Anchor href={'/login'} text="로그인" styling={'textOnly'} />
                 </div>
               </form>
             </div>
